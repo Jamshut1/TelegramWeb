@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Игра на заработок очков</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  #points {
+    font-size: 24px;
+    color: green;
+  }
+  #button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  #store {
+    margin-top: 20px;
+  }
+  .item {
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Заработайте свои очки!</h1>
+<div id="points">Очки: 0</div>
+<button id="button">Заработать очки</button>
+
+<div id="store">
+  <h2>Магазин</h2>
+  <div class="item">
+    <button onclick="buyItem('item1')">Улучшение 1 (Стоимость: 50 очков)</button>
+  </div>
+  <div class="item">
+    <button onclick="buyItem('item2')">Улучшение 2 (Стоимость: 100 очков)</button>
+  </div>
+  <!-- Добавьте больше товаров по мере необходимости -->
+</div>
+
+<script>
+var points = 0;
+
+document.getElementById('button').onclick = function() {
+  points++; // За каждый клик добавляется 1 очко
+  document.getElementById('points').textContent = 'Очки: ' + points;
+};
+
+function buyItem(item) {
+  var cost = 0;
+  if (item === 'item1') {
+    cost = 50;
+  } else if (item === 'item2') {
+    cost = 100;
+  }
+  // Проверка достаточности очков для покупки
+  if (points >= cost) {
+    points -= cost;
+    document.getElementById('points').textContent = 'Очки: ' + points;
+    alert('Вы купили ' + item);
+  } else {
+    alert('Недостаточно очков для покупки ' + item);
+  }
+}
+</script>
+
+</body>
+</html>
