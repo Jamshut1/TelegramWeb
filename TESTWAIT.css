@@ -1,0 +1,71 @@
+/* Основные стили */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1 {
+  color: #333;
+}
+
+/* Стили для очков */
+#points {
+  font-size: 24px;
+  color: #27ae60;
+  margin-bottom: 20px;
+}
+
+/* Стилизация кнопки заработка очков */
+#button {
+  padding: 10px 20px;
+  font-size: 18px;
+  color: white;
+  background-color: #2980b9;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+#button:hover {
+  background-color: #3498db;
+}
+
+/* Стилизация раздела прокачки */
+#upgrades {
+  margin-top: 30px;
+}
+
+.upgrade button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #8e44ad;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  margin-top: 10px;
+}
+
+.upgrade button:hover {
+  background-color: #9b59b6;
+}
+
+/* Медиа запросы для адаптивности */
+@media (max-width: 600px) {
+  body, h1 {
+    text-align: center;
+  }
+
+  #button, .upgrade button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
