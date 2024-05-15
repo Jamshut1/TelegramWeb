@@ -17,10 +17,10 @@
     font-size: 18px;
     margin-top: 20px;
   }
-  #store {
+  #upgrades {
     margin-top: 20px;
   }
-  .item {
+  .upgrade {
     margin-top: 10px;
   }
 </style>
@@ -31,41 +31,56 @@
 <div id="points">Очки: 0</div>
 <button id="button">Заработать очки</button>
 
-<div id="store">
-  <h2>Магазин</h2>
-  <div class="item">
-    <button onclick="buyItem('item1')">Улучшение 1 (Стоимость: 50 очков)</button>
+<div id="upgrades">
+  <h2>Прокачка</h2>
+  <div class="upgrade">
+    <button onclick="buyUpgrade('upgrade1')">Прокачка 1 (Стоимость: 50 очков)</button>
   </div>
-  <div class="item">
-    <button onclick="buyItem('item2')">Улучшение 2 (Стоимость: 100 очков)</button>
+  <div class="upgrade">
+    <button onclick="buyUpgrade('upgrade2')">Прокачка 2 (Стоимость: 100 очков)</button>
   </div>
-  <!-- Добавьте больше товаров по мере необходимости -->
+  <!-- Добавьте больше улучшений по мере необходимости -->
 </div>
 
 <script>
 var points = 0;
+var pointsPerClick = 1;
+var pointsPerSecond = 0;
+
+function updatePoints() {
+  document.getElementById('points').textContent = 'Очки: ' + points;
+}
 
 document.getElementById('button').onclick = function() {
-  points++; // За каждый клик добавляется 1 очко
-  document.getElementById('points').textContent = 'Очки: ' + points;
+  points += pointsPerClick;
+  updatePoints();
 };
 
-function buyItem(item) {
+function buyUpgrade(upgrade) {
   var cost = 0;
-  if (item === 'item1') {
+  if (upgrade === 'upgrade1') {
     cost = 50;
-  } else if (item === 'item2') {
+    if (points >= cost) {
+      points -= cost;
+      pointsPerSecond += 1; // Увеличивает заработок очков в секунду
+    }
+  } else if (upgrade === 'upgrade2') {
     cost = 100;
+    if (points >= cost) {
+      points -= cost;
+      pointsPerClick += 1; // Увеличивает заработок очков за клик
+    }
   }
-  // Проверка достаточности очков для покупки
-  if (points >= cost) {
-    points -= cost;
-    document.getElementById('points').textContent = 'Очки: ' + points;
-    alert('Вы купили ' + item);
-  } else {
-    alert('Недостаточно очков для покупки ' + item);
-  }
+  updatePoints();
 }
+
+// Функция для начисления очков каждую секунду
+setInterval(function() {
+  points += pointsPerSecond;
+  updatePoints();
+}, 1000);
+
+updatePoints();
 </script>
 
 </body>
